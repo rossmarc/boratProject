@@ -2,21 +2,20 @@
 
 /* Controllers */
 
-var phonecatControllers = angular.module('phonecatControllers', []);
+var movieControllers = angular.module('movieControllers', []);
 
-phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Phone',
-  function($scope, Phone) {
-    $scope.phones = Phone.query();
-    $scope.orderProp = 'age';
-  }]);
+var apikey = "7e4h9yk7rx32gysjmsau5dk7";
+var baseUrl = "http://api.rottentomatoes.com/api/public/v1.0/";
 
-phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone',
-  function($scope, $routeParams, Phone) {
-    $scope.phone = Phone.get({phoneId: $routeParams.phoneId}, function(phone) {
-      $scope.mainImageUrl = phone.images[0];
-    });
 
-    $scope.setImage = function(imageUrl) {
-      $scope.mainImageUrl = imageUrl;
-    }
-  }]);
+movieControllers.controller('MovieListCtrl', ['$scope', '$http',
+  function MovieListCtrl($scope, $http) {
+    var query = "star+wars"
+    var url = baseUrl + "movies.json?apikey=" + apikey + "&q=" + query + "&callback=JSON_CALLBACK"
+    $http.jsonp(url)
+      .success(function(data) {
+        $scope.movies = data.movies;
+      }
+    );
+  }
+]);

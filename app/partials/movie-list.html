@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <!--Sidebar content-->
+     <!--  <form ng-controller="searchCtrl" ng-submit="search()">
+        <input type="text" name="title" ng-model="title" />
+        <input type="submit" value="Search" />
+      </form> -->
+    </div>
+    <div class="span10">
+      <!--Body content-->
+
+      <ul class="movies">
+        <li ng-repeat="movie in movies" class="movie-list">
+          {{movie.title}}
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
